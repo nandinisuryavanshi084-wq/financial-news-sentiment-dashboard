@@ -1,0 +1,108 @@
+{
+  "name": "News Agent API",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "get-news",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f2208080-1185-4eab-82e3-e6b5a19aa25e",
+      "name": "Webhook",
+      "webhookId": "b424ee66-5937-4a65-926c-d86a24573d36"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Tech News Agent",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit",
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18hm1oS3TQNpG2-zJJym-0_ZQGg1LF_cb6QfTnG_BonI/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "59109bbe-e8d9-408e-976c-5a111b4895d3",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "koJhqOk0Yxz6tXt5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        416,
+        0
+      ],
+      "id": "eafc4a30-f58c-48ae-897b-c9261883fc0c",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "46027c86-8ba8-4957-a74d-689d68dc5ceb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "6a77c13c44094a00f1467efeac62602b3aff5bcde4623e4f1987da778852ac17"
+  },
+  "nodeGroups": [],
+  "id": "pz4hrZojg1ixQHwH",
+  "tags": []
+}
