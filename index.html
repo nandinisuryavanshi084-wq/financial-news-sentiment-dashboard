@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NewsSignal AI</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">News<span>Signal</span> AI</div>
+    <div class="nav-pill"><div class="dot"></div> LIVE</div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="eyebrow">AI Stock Impact Agent</div>
+    <h1>Know how tech news<br><em>moves the market</em></h1>
+    <p class="hero-sub">Enter any company to instantly analyze its stock impact, or browse today's AI-classified news feed.</p>
+  </div>
+
+  <!-- SEARCH BOX -->
+  <div class="search-section">
+    <div class="search-box">
+      <div class="search-label">Search Company</div>
+      <div class="search-row">
+        <input class="search-input" id="company-input" 
+        type="text" placeholder="e.g. Tesla, Apple, Nvidia..."/>
+        <button class="analyze-btn" id="analyze-btn" 
+        onclick="analyzeCompany()">Analyze</button>
+      </div>
+      <div class="quick-btns">
+        <span class="quick-label">Quick:</span>
+        <button class="quick-btn" onclick="quickSearch('Tesla')">Tesla</button>
+        <button class="quick-btn" onclick="quickSearch('Apple')">Apple</button>
+        <button class="quick-btn" onclick="quickSearch('Microsoft')">Microsoft</button>
+        <button class="quick-btn" onclick="quickSearch('Nvidia')">Nvidia</button>
+        <button class="quick-btn" onclick="quickSearch('Google')">Google</button>
+      </div>
+      <div class="result-area" id="result-area">
+        <div class="result-card" id="result-card"></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- STATS -->
+  <div class="stats-section">
+    <div class="stats-title">Today's Market Sentiment</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-val accent" id="total-count">—</div>
+        <div class="stat-label">Articles analyzed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Sentiment breakdown</div>
+        <div class="sentiment-bar">
+          <div class="bar-row">
+            <div class="bar-label green">Positive</div>
+            <div class="bar-track">
+              <div class="bar-fill green-fill" id="pos-bar"></div>
+            </div>
+            <div class="bar-pct green" id="pos-pct">—</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label gray">Neutral</div>
+            <div class="bar-track">
+              <div class="bar-fill gray-fill" id="neu-bar"></div>
+            </div>
+            <div class="bar-pct gray" id="neu-pct">—</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label red">Negative</div>
+            <div class="bar-track">
+              <div class="bar-fill red-fill" id="neg-bar"></div>
+            </div>
+            <div class="bar-pct red" id="neg-pct">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- NEWS FEED -->
+  <div class="feed-section">
+    <div class="feed-header">
+      <div class="feed-title">Latest AI Analyzed News</div>
+      <div class="filter-tabs">
+        <button class="tab active" onclick="filterNews('all',this)">All</button>
+        <button class="tab" onclick="filterNews('Positive',this)">🟢 Positive</button>
+        <button class="tab" onclick="filterNews('Negative',this)">🔴 Negative</button>
+        <button class="tab" onclick="filterNews('Neutral',this)">⚪ Neutral</button>
+      </div>
+    </div>
+    <div class="news-grid" id="news-container">
+      <div class="loading">
+        <div class="spinner"></div>
+        Loading live news from your n8n agent...
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-text">
+      NewsSignal AI — Powered by n8n + Groq LLaMA 3.3 + Google Sheets
+    </div>
+    <div class="footer-badge">Auto-updates every 24h</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
